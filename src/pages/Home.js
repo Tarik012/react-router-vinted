@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
+import Hero from "../components/Hero";
+
 const Home = () => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -12,9 +14,9 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers"
+          "https://lereacteur-vinted-api.herokuapp.com/offers" // je récupère tout mes articles
         );
-        console.log(response.data);
+        //console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -27,11 +29,10 @@ const Home = () => {
     <span>En cours de chargement...</span>
   ) : (
     <div className="container">
-      {/* AJOUTER COMPOSANT HEADER */}
-      {/* METTRE DANS COMPOSANT OFFERS */}
+      <Hero />
       {data.offers.map((offer) => {
+        //console.log("offer==>", offer);
         return (
-          //METTRE DANS COMPOSANT OFFER
           <Link to={`/offer/${offer._id}`}>
             <div className="tabimages" key={offer._id}>
               {offer.product_pictures[0]?.secure_url ? (

@@ -1,7 +1,7 @@
 /*CONTAINER GLOBAL*/
 .container {
   margin: 0 auto;
-  max-width: 1200px;
+  width: 100vw;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
@@ -104,4 +104,24 @@ input {
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+
+/*PARTIE OFFER*/
+.offer {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.offer-image {
+  /* border: 1px solid black; */
+}
+
+.offer-image img {
+  border-radius: 10px;
+}
+
+.offer-cart {
+  border: 1px solid black;
+  width: 300px;
 }
