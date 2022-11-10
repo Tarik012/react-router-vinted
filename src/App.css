@@ -16,11 +16,16 @@ a {
 .header {
   margin: 0 auto;
   max-width: 1200px;
-  height: 100px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
+  box-sizing: border-box;
+}
+
+.header button {
+  cursor: pointer;
 }
 
 .logo {
@@ -31,7 +36,9 @@ a {
 }
 
 .logo img {
-  height: 130px;
+  height: 100px;
+  width: 200px;
+  padding-bottom: 20px;
 }
 
 .search {
@@ -39,7 +46,8 @@ a {
 }
 
 .search input {
-  width: 60%;
+  width: 100%;
+  height: 40px;
 }
 
 .login-connect {
@@ -101,6 +109,10 @@ input {
 }
 
 /*PARTIE OFFERS*/
+.tab-images {
+  padding-top: 20px;
+  background-color: #eaedee;
+}
 .offers {
   margin-bottom: 60px;
   width: calc(100% / 5 - 80 / 5);
@@ -150,17 +162,23 @@ input {
 
 .offer-cart {
   border: 1px solid black;
-  width: 300px;
-}
-
-/*FORM SIGNUP*/
-.div-form-signup {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px;
+  justify-content: space-between;
+  gap: 20px;
+  width: 300px;
+  height: fit-content;
 }
-.div-form-signup h1 {
+
+/*FORM SIGNUP*/
+.div-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.div-form h1 {
   font-size: 22px;
 }
 .signup {
@@ -173,7 +191,7 @@ input {
 .signup input {
   width: 300px;
 }
-.signup input:nth-child(-n + 3) {
+.signup input:not(:last-child) {
   border: none;
   border-radius: 0%;
   border-bottom: 0.5px solid #2db0ba;
@@ -185,4 +203,10 @@ input {
   font-weight: 200;
   background-color: #2db0ba;
   border-style: hidden;
+  height: 40px;
+}
+
+.link-to-signup {
+  font-size: 14px;
+  color: #2db0ba;
 }

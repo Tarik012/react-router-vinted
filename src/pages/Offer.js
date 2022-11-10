@@ -17,7 +17,7 @@ const Offer = () => {
         const response = await axios.get(
           `https://lereacteur-vinted-api.herokuapp.com/offer/${id}` //on interroge de nouveau la base pour avoir en GET l'article avec son id
         );
-        console.log("data==>", response.data);
+        //console.log("data==>", response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -29,15 +29,7 @@ const Offer = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    // <div className="tabimages">
-    //   {data.product_pictures[0]?.secure_url && (
-    //     <img
-    //       src={data.product_pictures[0].secure_url}
-    //       alt={data.product_description}
-    //     ></img>
-    //   )}
-    // </div>
-    <div className="tabimages">
+    <div className="tab-images">
       <div className="offer">
         <Link to="/">Retour liste articles</Link>
         <div className="offer-image">
@@ -57,6 +49,24 @@ const Offer = () => {
                 </p>
               );
             })}
+          </div>
+
+          <div>
+            <p>{data.product_name}</p>
+          </div>
+          <div>
+            <p>{data.product_description}</p>
+          </div>
+          <div className="owner">
+            <img
+              src={data.owner.account.avatar.secure_url}
+              alt="owner"
+              style={{ height: 25, width: 25 }}
+            />
+            <p>{data.owner.account.username}</p>
+          </div>
+          <div className="button-buy">
+            <button>Acheter</button>
           </div>
         </div>
       </div>

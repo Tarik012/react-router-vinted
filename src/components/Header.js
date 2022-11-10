@@ -1,7 +1,15 @@
-import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo-vinted.png";
-const Header = () => {
+const Header = ({ token, setToken }) => {
+  const navigate = useNavigate();
+
+  const handleClickDisconnect = () => {
+    setToken(null);
+    Cookies.remove("tokenCookie");
+    navigate("/");
+  };
   return (
     <div className="header">
       <div className="logo">
@@ -12,12 +20,20 @@ const Header = () => {
       <div className="search">
         <input type="search" placeholder="Recherche des articles"></input>
       </div>
-      <div className="login-connect">
-        <Link to="/signup">
-          <button>S'inscrire</button>
-        </Link>
-        <button>Se connecter</button>
-      </div>
+      {token ? (
+        <div className="login-connect">
+          <button onClick={handleClickDisconnect}>Deconnexion</button>
+        </div>
+      ) : (
+        <div className="login-connect">
+          <Link to="/signup">
+            <button>S'inscrire</button>
+          </Link>
+          <Link to="/login">
+            <button>Se connecter</button>
+          </Link>
+        </div>
+      )}
       <div className="button-buy">
         <button>Vends tes articles</button>
       </div>

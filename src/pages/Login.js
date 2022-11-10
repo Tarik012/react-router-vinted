@@ -1,12 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const url = "https://lereacteur-vinted-api.herokuapp.com/user/signup";
+const url = "https://lereacteur-vinted-api.herokuapp.com/user/login";
 
-const Signup = ({ handleToken }) => {
+const Login = ({ handleToken }) => {
   const [data, setData] = useState();
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -17,14 +16,12 @@ const Signup = ({ handleToken }) => {
     try {
       const resp = await axios.post(url, {
         email,
-        username: name,
         password,
-        newsletter: true,
       });
       //console.log("resp.data==>", resp.data);
 
       setData(resp.data);
-      handleToken(data.token); // j'enregistre mon token
+      handleToken(resp.data.token); // j'enregistre mon token
       navigate("/"); // je redirige vers la page d'accueil Home
     } catch (error) {
       console.log(error.response);
@@ -32,24 +29,15 @@ const Signup = ({ handleToken }) => {
   };
   return (
     <div className="div-form">
-      <h1>S'inscrire</h1>
+      <h1>Se connecter</h1>
       <div>
         <form className="signup" onSubmit={handleSubmit}>
-          <input
-            onChange={(event) => {
-              setName(event.target.value);
-            }}
-            type="text"
-            placeholder="Nom d'utilisateur"
-            value={name}
-            name="inputText"
-          ></input>
           <input
             onChange={(event) => {
               setEmail(event.target.value);
             }}
             type="email"
-            placeholder="Email"
+            placeholder="Adresse email"
             value={email}
             name="inputEmail"
           ></input>
@@ -62,11 +50,16 @@ const Signup = ({ handleToken }) => {
             value={password}
             name="inputPassword"
           ></input>
-          <input type="submit" value="S'inscrire"></input>
+          <input type="submit" value="Se connecter"></input>
         </form>
       </div>
+      <Link to="/signup">
+        <div className="link-to-signup">
+          <p>Pas encore de compte ? Inscris-toi !</p>
+        </div>
+      </Link>
     </div>
   );
 };
 
-export default Signup;
+export default Login;
