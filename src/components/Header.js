@@ -13,7 +13,9 @@ const Header = () => {
         <input type="search" placeholder="Recherche des articles"></input>
       </div>
       <div className="login-connect">
-        <button>S'inscrire</button>
+        <Link to="/signup">
+          <button>S'inscrire</button>
+        </Link>
         <button>Se connecter</button>
       </div>
       <div className="button-buy">
