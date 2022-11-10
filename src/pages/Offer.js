@@ -4,10 +4,10 @@ import axios from "axios";
 
 import { useParams } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 const Offer = () => {
   const { id } = useParams();
-  console.log("id==>", id);
-
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -29,19 +29,35 @@ const Offer = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <div className="offer">
-      <div className="offer-image">
-        <img src={data.product_image.secure_url} alt="offer"></img>
-      </div>
-      <div className="offer-cart">
-        <div>
-          <p>{data.product_price}</p>
+    // <div className="tabimages">
+    //   {data.product_pictures[0]?.secure_url && (
+    //     <img
+    //       src={data.product_pictures[0].secure_url}
+    //       alt={data.product_description}
+    //     ></img>
+    //   )}
+    // </div>
+    <div className="tabimages">
+      <div className="offer">
+        <Link to="/">Retour liste articles</Link>
+        <div className="offer-image">
+          <img src={data.product_image.secure_url} alt="offer"></img>
         </div>
-        <div>
-          <p>MARQUE : {data.product_details[0]["MARQUE"]}</p>
-          <p>ETAT : {data.product_details[1]["ETAT"]}</p>
-          <p>COULEUR : {data.product_details[2]["COULEUR"]}</p>
-          <p>EMPLACEMENT : {data.product_details[3]["EMPLACEMENT"]}</p>
+        <div className="offer-cart">
+          <div>
+            <p>{data.product_price}</p>
+          </div>
+
+          <div>
+            {data.product_details.map((detail, index) => {
+              const key = Object.keys(detail)[0];
+              return (
+                <p key={index}>
+                  {key} : {detail[key]}
+                </p>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

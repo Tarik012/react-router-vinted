@@ -1,10 +1,9 @@
-import { Link } from "react-router-dom";
-
 import { useState, useEffect } from "react";
 
 import axios from "axios";
 
 import Hero from "../components/Hero";
+import Offers from "../components/Offers";
 
 const Home = () => {
   const [data, setData] = useState();
@@ -28,28 +27,16 @@ const Home = () => {
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (
-    <div className="container">
-      <Hero />
-      {data.offers.map((offer) => {
-        //console.log("offer==>", offer);
-        return (
-          <Link to={`/offer/${offer._id}`}>
-            <div className="tabimages" key={offer._id}>
-              {offer.product_pictures[0]?.secure_url ? (
-                <img
-                  src={offer.product_pictures[0].secure_url}
-                  alt={offer.product_description}
-                ></img>
-              ) : (
-                <img
-                  src="https://res.cloudinary.com/lereacteur/image/upload/v1667579398/api/vinted-v2/offers/63653e0536dd4584809e40fa/l25mrpifm8dw43zmlrgw.jpg"
-                  alt="text"
-                ></img>
-              )}
-            </div>
-          </Link>
-        );
-      })}
+    <div>
+      <div>
+        <Hero />
+      </div>
+      <div className="container">
+        {data.offers.map((offer) => {
+          //console.log("offer==>", offer);
+          return <Offers key={offer._id} offerInfos={offer} />;
+        })}
+      </div>
     </div>
   );
 };

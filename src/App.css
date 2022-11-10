@@ -1,10 +1,15 @@
+a {
+  text-decoration: none;
+}
+
 /*CONTAINER GLOBAL*/
 .container {
-  margin: 0 auto;
-  width: 100vw;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  max-width: 1225px;
+  margin: 0 auto;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 /*PARTIE HEADER*/
@@ -95,15 +100,37 @@ input {
   box-sizing: border-box;
 }
 
-/*GESTION DE MES IMAGES*/
-.tabimages {
-  width: calc((100% / 5) - (5 * 5px));
+/*PARTIE OFFERS*/
+.offers {
+  margin-bottom: 60px;
+  width: calc(100% / 5 - 80 / 5);
+  box-sizing: border-box;
+  text-decoration: none;
 }
-
-.tabimages img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
+.owner {
+  padding-left: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+.owner img {
+  border-radius: 50px;
+}
+.owner p {
+  font-size: 14px;
+  color: #999999;
+}
+.offers-product-details {
+  padding-left: 10px;
+  font-size: 14px;
+  color: #999999;
+  margin-top: 10px;
+}
+.offers-product-price {
+  font-size: 17px;
+  color: black;
 }
 
 /*PARTIE OFFER*/
