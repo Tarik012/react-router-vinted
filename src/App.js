@@ -12,9 +12,15 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Header from "./components/Header";
 import Blank from "./components/Blank";
+import Search from "./components/Search";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("tokenCookie") || null); // le cookie sera le token sinon null
+
+  const [title, setTitle] = useState("");
+  const [minprice, setMinPrice] = useState("");
+  const [maxprice, setMaxPrice] = useState("");
+  const [sort, setSort] = useState("");
 
   const handleToken = (token) => {
     if (token) {
@@ -28,9 +34,34 @@ function App() {
 
   return (
     <Router>
-      <Header token={token} setToken={setToken} />
+      <Header
+        token={token}
+        setToken={setToken}
+        search={
+          <Search
+            title={title}
+            minprice={minprice}
+            maxprice={maxprice}
+            sort={sort}
+            setTitle={setTitle}
+            setMinPrice={setMinPrice}
+            setMaxPrice={setMaxPrice}
+            setSort={setSort} //value => price-desc or price-asc
+          />
+        }
+      />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/"
+          element={
+            <Home
+              title={title}
+              minprice={minprice}
+              maxprice={maxprice}
+              sort={sort}
+            />
+          }
+        ></Route>
         <Route path="/offer/:id" element={<Offer />}></Route>
         <Route
           path="/signup"

@@ -5,7 +5,7 @@ import axios from "axios";
 import Hero from "../components/Hero";
 import Offers from "../components/Offers";
 
-const Home = () => {
+const Home = ({ title, minprice, maxprice, sort }) => {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -13,17 +13,17 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers" // je récupère tout mes articles
+          `https://lereacteur-vinted-api.herokuapp.com/offers?title=${title}&priceMin=${minprice}&priceMax=${maxprice}&sort=${sort}` // je récupère tout mes articles
         );
         //console.log(response.data);
         setData(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error.response); // contrairement au error.message d'express
+        console.log(error.response.data); // contrairement au error.message d'express
       }
     };
     fetchData();
-  }, []);
+  }, [title, minprice, maxprice, sort]);
   return isLoading ? (
     <span>En cours de chargement...</span>
   ) : (

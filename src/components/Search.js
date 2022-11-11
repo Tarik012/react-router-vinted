@@ -1,33 +1,13 @@
-import { useState, useEffect } from "react";
-
-import axios from "axios";
-
-const Search = () => {
-  const [title, setTitle] = useState("");
-  const [minprice, setMinPrice] = useState(0);
-  const [maxprice, setMaxPrice] = useState();
-  const [sort, setSort] = useState("");
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          "https://lereacteur-vinted-api.herokuapp.com/offers",
-          {
-            title,
-            priceMin: minprice,
-            priceMax: maxprice,
-            sort: sort,
-          }
-        );
-        console.log(response.data);
-      } catch (error) {
-        console.log(error.response.data);
-      }
-    };
-    fetchData();
-  }, [title, minprice, maxprice, sort]);
-
+const Search = ({
+  title,
+  minprice,
+  maxprice,
+  sort,
+  setTitle,
+  setMinPrice,
+  setMaxPrice,
+  setSort,
+}) => {
   return (
     <div className="filters">
       <div className="search">
