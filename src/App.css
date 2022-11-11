@@ -210,3 +210,9 @@ input {
   font-size: 14px;
   color: #2db0ba;
 }
+
+.newsletter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

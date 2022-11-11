@@ -8,11 +8,13 @@ const Login = ({ handleToken }) => {
   const [data, setData] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrorMessage("");
     try {
       const resp = await axios.post(url, {
         email,
@@ -21,10 +23,24 @@ const Login = ({ handleToken }) => {
       //console.log("resp.data==>", resp.data);
 
       setData(resp.data);
-      handleToken(resp.data.token); // j'enregistre mon token
+      if (resp.data.token) {
+        handleToken(resp.data.token); // j'enregistre mon token
+      }
       navigate("/"); // je redirige vers la page d'accueil Home
     } catch (error) {
-      console.log(error.response);
+      console.log(error.message);
+      console.log(error.response.data); //récupère le message d'erreur venant du serveur
+
+      switch (error.response.status) {
+        case 400:
+          setErrorMessage("Please fill all input of the form");
+          break;
+        case 401:
+          setErrorMessage("Please renseign another email.");
+          break;
+        default:
+          break;
+      }
     }
   };
   return (
@@ -32,6 +48,7 @@ const Login = ({ handleToken }) => {
       <h1>Se connecter</h1>
       <div>
         <form className="signup" onSubmit={handleSubmit}>
+          <span style={{ color: "red" }}>{errorMessage}</span>
           <input
             onChange={(event) => {
               setEmail(event.target.value);
