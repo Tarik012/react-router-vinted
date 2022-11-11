@@ -216,3 +216,19 @@ input {
   align-items: center;
   justify-content: flex-start;
 }
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.price-and-sort {
+  display: flex;
+  gap: 5px;
+}
+
+.price-and-sort input {
+  border: 1px solid black;
+}

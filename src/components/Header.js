@@ -1,7 +1,11 @@
 import Cookies from "js-cookie";
+
 import { Link, useNavigate } from "react-router-dom";
 
+import Search from "../components/Search";
+
 import logo from "../assets/images/logo-vinted.png";
+
 const Header = ({ token, setToken }) => {
   const navigate = useNavigate();
 
@@ -17,9 +21,7 @@ const Header = ({ token, setToken }) => {
           <img src={logo} alt="logo"></img>
         </Link>
       </div>
-      <div className="search">
-        <input type="search" placeholder="Recherche des articles"></input>
-      </div>
+      <Search />
       {token ? (
         <div className="login-connect">
           <button onClick={handleClickDisconnect}>Deconnexion</button>
