@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 const url = "https://lereacteur-vinted-api.herokuapp.com/user/login";
 
 const Login = ({ handleToken }) => {
-  const [data, setData] = useState();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -22,7 +21,6 @@ const Login = ({ handleToken }) => {
       });
       //console.log("resp.data==>", resp.data);
 
-      setData(resp.data);
       if (resp.data.token) {
         handleToken(resp.data.token); // j'enregistre mon token
       }
