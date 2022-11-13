@@ -7,6 +7,7 @@ const Search = ({
   setMinPrice,
   setMaxPrice,
   setSort,
+  multirangeslider,
 }) => {
   return (
     <div className="filters">
@@ -46,6 +47,7 @@ const Search = ({
           }}
         ></input>
       </div>
+      <div style={{ marginTop: "10px" }}>{multirangeslider}</div>
     </div>
   );
 };

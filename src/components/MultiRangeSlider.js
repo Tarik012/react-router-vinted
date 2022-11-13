@@ -5,9 +5,8 @@ import { useState, useRef, useCallback, useEffect } from "react";
 //import { classnames } from "classnames";
 const classnames = require("classnames");
 
+// On instancie les props du composant
 const MultiRangeSlider = ({ min, max, onChange }) => {
-  // On instancie les props du composant
-
   // On donne le type de chaque props
   MultiRangeSlider.propTypes = {
     min: PropTypes.number.isRequired,
@@ -23,6 +22,34 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
+
+  //JE CALCUL LA POSITION DE MA DIV "slider-container"
+  const boxRef = useRef();
+  const [x, setX] = useState();
+  const [y, setY] = useState();
+  //2 usestate pour mes div contenant les valeurs
+  const [xLeftValue, setXLeftValue] = useState();
+  const [xRightValue, setXRightValue] = useState();
+  // Fonction qui calcule X et Y
+  const getPosition = () => {
+    const x = boxRef.current.offsetLeft;
+    setX(x);
+    const y = boxRef.current.offsetTop;
+    setY(y);
+    const xLeftValueNew = x + minVal;
+    setXLeftValue(xLeftValueNew);
+    // const xRightValueNew = x + 50;
+    // setXRightValue(xRightValueNew);
+  };
+  // J'obtiens la position de ma div au début dans le useEffect
+  useEffect(() => {
+    getPosition();
+  }, []);
+
+  // Je recalcule X et Y quand la fenêtre est redimensionnée
+  useEffect(() => {
+    window.addEventListener("resize", getPosition);
+  }, []);
 
   // Ajout de la librairie pour ==> yarn add classnames, pour ajouter du css
 
@@ -64,10 +91,27 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
     onChange({ min: minVal, max: maxVal });
   }, [minVal, maxVal, onChange]);
 
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   const element = document.querySelector("slider-container");
+  //   console.log("element=>", element);
+  // });
+
+  let XDecalageMin = xLeftValue + minVal;
+  // console.log("xLeftValueNew==>", xLeftValue);
+  // console.log("minVal==>", minVal);
+  // console.log("XDecalage==>", XDecalageMin);
+  // let XDecalageMax = xRightValue + 100;
+  // console.log("XDecalageMax==>", XDecalageMax);
+
   return (
-    <>
+    <div className="slider-container" ref={boxRef}>
+      {/* <div>
+        <span>X: {x ?? "No result"}</span>
+        <span>Y: {y ?? "No result"}</span>
+      </div> */}
       <input
         type="range"
+        name="point1"
         min={min}
         max={max}
         value={minVal}
@@ -88,20 +132,26 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         value={maxVal}
         ref={maxValRef}
         onChange={(event) => {
-          const value = Math.max(+event.target.value, minVal + 1);
+          const value = Math.max(+event.target.value, minVal + 1); //Valeur de max = min + 1 pour ne pas se chevaucher et garder un rande de 1 minimum
           setMaxVal(value);
           event.target.value = value.toString();
         }}
         className="thumb thumb--zindex-4"
       />
-      <div className="slider">
+      {/* <div className="slider">
         <div className="slider__track" />
         <div ref={range} className="slider__range" />
-      </div>
+      </div> */}
 
-      <div className="slider__left-value">{minVal}</div>
-      <div className="slider__right-value">{maxVal}</div>
-    </>
+      <div className="slider__left-value" style={{ left: `${XDecalageMin}px` }}>
+        {minVal}
+      </div>
+      <div className="slider__right-value" style={{ left: "640px" }}>
+        {maxVal}
+      </div>
+      {/* <div className="slider__left-value">{minVal}</div>
+      <div className="slider__right-value">{maxVal}</div> */}
+    </div>
   );
 };
 

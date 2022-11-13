@@ -222,6 +222,7 @@ input {
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
+  padding-bottom: 20px;
 }
 
 .price-and-sort {
@@ -230,5 +231,9 @@ input {
 }
 
 .price-and-sort input {
+  border: 1px solid black;
+}
+
+.slider-container {
   border: 1px solid black;
 }
