@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+import Modal from "./components/Modal";
+
 import Cookies from "js-cookie";
 
 import Home from "./pages/Home";
@@ -22,6 +24,7 @@ function App() {
   const [minprice, setMinPrice] = useState("");
   const [maxprice, setMaxPrice] = useState("");
   const [sort, setSort] = useState("");
+  const [visible, setVisible] = useState(false); // state pour afficher la modal
 
   const handleToken = (token) => {
     if (token) {
@@ -36,47 +39,53 @@ function App() {
   // console.log("minprice==>", minprice);
   // console.log("maxprice==>", maxprice);
   return (
-    <Router>
-      <Header
-        token={token}
-        setToken={setToken}
-        search={
-          <Search
-            title={title}
-            minprice={minprice}
-            maxprice={maxprice}
-            sort={sort}
-            setTitle={setTitle}
-            setMinPrice={setMinPrice}
-            setMaxPrice={setMaxPrice}
-            setSort={setSort} //value => price-desc or price-asc
-          />
-        }
-      />
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
+    <div className="App">
+      <Router>
+        <Header
+          token={token}
+          setToken={setToken}
+          search={
+            <Search
               title={title}
               minprice={minprice}
               maxprice={maxprice}
               sort={sort}
+              setTitle={setTitle}
+              setMinPrice={setMinPrice}
+              setMaxPrice={setMaxPrice}
+              setSort={setSort} //value => price-desc or price-asc
             />
           }
-        ></Route>
-        <Route path="/offer/:id" element={<Offer />}></Route>
-        <Route
-          path="/signup"
-          element={<Signup handleToken={handleToken} />}
-        ></Route>
-        <Route
-          path="/login"
-          element={<Login handleToken={handleToken} />}
-        ></Route>
-        <Route path="*" element={<Blank />}></Route>
-      </Routes>
-    </Router>
+          visible={visible}
+          setVisible={setVisible}
+        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home
+                title={title}
+                minprice={minprice}
+                maxprice={maxprice}
+                sort={sort}
+              />
+            }
+          ></Route>
+          <Route path="/offer/:id" element={<Offer />}></Route>
+          <Route
+            path="/signup"
+            element={<Signup handleToken={handleToken} />}
+          ></Route>
+          <Route
+            path="/login"
+            element={<Login handleToken={handleToken} />}
+          ></Route>
+          <Route path="*" element={<Blank />}></Route>
+        </Routes>
+        {visible && <Modal setVisible={setVisible} />}
+        {/* toujours placer la modal à la fin */}
+      </Router>
+    </div>
   );
 }
 

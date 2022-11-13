@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import logo from "../assets/images/logo-vinted.png";
 
-const Header = ({ token, setToken, search }) => {
+const Header = ({ token, setToken, search, visible, setVisible }) => {
   const navigate = useNavigate();
 
   const handleClickDisconnect = () => {
@@ -28,13 +28,22 @@ const Header = ({ token, setToken, search }) => {
         </div>
       ) : (
         <div className="login-connect">
-          <Link to="/signup">
-            <button>S'inscrire</button>
-          </Link>
-          <Link to="/login">
-            <button>Se connecter</button>
-          </Link>
+          <button
+            onClick={() => {
+              setVisible(!visible); // on inverse la valeur de `visible` à chaque click
+            }}
+          >
+            S'inscrire / Se connecter
+          </button>
         </div>
+        // <div className="login-connect">
+        //   <Link to="/signup">
+        //     <button>S'inscrire</button>
+        //   </Link>
+        //   <Link to="/login">
+        //     <button>Se connecter</button>
+        //   </Link>
+        // </div>
       )}
       <div className="button-buy">
         <button>Vends tes articles</button>
