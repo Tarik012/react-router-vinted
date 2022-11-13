@@ -1,32 +1,31 @@
-const Modal = ({ setVisible }) => {
+const Modal = ({ setVisible, signup, login }) => {
   return (
-    <div className="modal-root">
-      <div className="modal">
-        {/* button pour fermer la modal */}
+    <div
+      className="modal-root"
+      onClick={(event) => {
+        setVisible(false); //un clic sur cette modal parent (ie en dehors de la modal enfant modal avec form) ferme la modal
+      }}
+    >
+      <div
+        className="modal signup-login-modal-container"
+        onClick={(event) => {
+          event.stopPropagation(); //pour arrêter la propagation à la modal parent qui est modal-root, je peux ainsi cliquer et valider mon formulaire
+        }}
+      >
+        {signup}
+        {login}
+      </div>
+      {/* <div className="modal">
+        // button pour fermer la modal 
         <button
-          onClick={() => {
+          onClick={(event) => {
             setVisible(false);
+            //event.stopPropagation();
           }}
         >
-          X
+          Close
         </button>
-        <p>
-          Pellentesque odio metus, ultrices sed elementum ac, blandit id velit.
-          Maecenas sed nibh pharetra, pulvinar sapien vitae, commodo augue. Ut a
-          elementum augue. Nulla tincidunt felis sit amet est facilisis
-          ultricies. Vivamus ut cursus urna, ac lacinia erat. Etiam aliquet
-          auctor tortor ut molestie. Morbi lobortis dolor neque. Maecenas sed
-          semper justo. Duis pulvinar pulvinar pretium. Proin rhoncus nec risus
-          sed accumsan. Aliquam nec eros eu dui porta accumsan lobortis a enim.
-          Pellentesque odio metus, ultrices sed elementum ac, blandit id velit.
-          Maecenas sed nibh pharetra, pulvinar sapien vitae, commodo augue. Ut a
-          elementum augue. Nulla tincidunt felis sit amet est facilisis
-          ultricies. Vivamus ut cursus urna, ac lacinia erat. Etiam aliquet
-          auctor tortor ut molestie. Morbi lobortis dolor neque. Maecenas sed
-          semper justo. Duis pulvinar pulvinar pretium. Proin rhoncus nec risus
-          sed accumsan. Aliquam nec eros eu dui porta accumsan lobortis a enim.
-        </p>
-      </div>
+      </div> */}
     </div>
   );
 };

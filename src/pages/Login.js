@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const url = "https://lereacteur-vinted-api.herokuapp.com/user/login";
 
-const Login = ({ handleToken }) => {
+const Login = ({ handleToken, setVisible }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,6 +24,7 @@ const Login = ({ handleToken }) => {
       if (resp.data.token) {
         handleToken(resp.data.token); // j'enregistre mon token
       }
+      setVisible(false);
       navigate("/"); // je redirige vers la page d'accueil Home
     } catch (error) {
       console.log(error.message);

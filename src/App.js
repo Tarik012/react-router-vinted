@@ -72,17 +72,25 @@ function App() {
             }
           ></Route>
           <Route path="/offer/:id" element={<Offer />}></Route>
-          <Route
+          {/* <Route
             path="/signup"
             element={<Signup handleToken={handleToken} />}
           ></Route>
           <Route
             path="/login"
             element={<Login handleToken={handleToken} />}
-          ></Route>
+          ></Route> */}
           <Route path="*" element={<Blank />}></Route>
         </Routes>
-        {visible && <Modal setVisible={setVisible} />}
+        {visible && (
+          <Modal
+            setVisible={setVisible}
+            signup={
+              <Signup handleToken={handleToken} setVisible={setVisible} />
+            }
+            login={<Login handleToken={handleToken} setVisible={setVisible} />}
+          />
+        )}
         {/* toujours placer la modal à la fin */}
       </Router>
     </div>

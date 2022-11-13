@@ -1,10 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const url = "https://lereacteur-vinted-api.herokuapp.com/user/signup";
 
-const Signup = ({ handleToken }) => {
+const Signup = ({ handleToken, setVisible }) => {
   const [data, setData] = useState();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +30,7 @@ const Signup = ({ handleToken }) => {
       if (resp.data.token) {
         handleToken(data.token); // j'enregistre mon token
       }
-
+      setVisible(false);
       navigate("/"); // je redirige vers la page d'accueil Home
     } catch (error) {
       console.log(error.message);
@@ -90,10 +90,24 @@ const Signup = ({ handleToken }) => {
             ></input>
             <p>S'inscrire à notre newsletter</p>
           </div>
+          <div>
+            <p style={{ fontSize: "12px", color: "#9A9A9A" }}>
+              En m'inscrivant je confirme avoir lu et accepté
+              <br /> les Termes & Conditions et Politique de
+              <br />
+              confidentialité de Vinted. Je confirme avoir au
+              <br /> moins 18 ans.
+            </p>
+          </div>
 
           <input type="submit" value="S'inscrire"></input>
         </form>
       </div>
+      <Link to="/login">
+        <div className="link-to-signup">
+          <p>Tu as déjà un compte ? Connecte-toi !</p>
+        </div>
+      </Link>
     </div>
   );
 };

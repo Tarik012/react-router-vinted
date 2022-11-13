@@ -9,7 +9,6 @@ const Search = ({
   setMinPrice,
   setMaxPrice,
   setSort,
-  multirangeslider,
 }) => {
   return (
     <div className="filters">
