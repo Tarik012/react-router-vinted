@@ -6,39 +6,40 @@ import { useState, useRef, useCallback, useEffect } from "react";
 const classnames = require("classnames");
 
 // On instancie les props du composant
-const MultiRangeSlider = ({ min, max, onChange }) => {
+const MultiRangeSlider = ({ minprice, maxprice, onChange }) => {
   // On donne le type de chaque props
   MultiRangeSlider.propTypes = {
-    min: PropTypes.number.isRequired,
-    max: PropTypes.number.isRequired,
+    minprice: PropTypes.number.isRequired,
+    maxprice: PropTypes.number.isRequired,
     onChange: PropTypes.func.isRequired,
   };
 
   // On ajoute 2 valeurs d'états
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
+  const [minVal, setMinVal] = useState(minprice);
+  const [maxVal, setMaxVal] = useState(maxprice);
 
   // On crée des refs
   const minValRef = useRef(null);
   const maxValRef = useRef(null);
   const range = useRef(null);
 
-  //JE CALCUL LA POSITION DE MA DIV "slider-container"
+  //JE CALCUL LA POSITION DE MA DIV "slider-container" pour pouvoir jouer sur le left des mes div affichant la valeur au déplacement des curseurs
+  // HELAS NE FONCTIONNE PAS POUR LE MOMENT
   const boxRef = useRef();
   const [x, setX] = useState();
   const [y, setY] = useState();
   //2 usestate pour mes div contenant les valeurs
-  const [xLeftValue, setXLeftValue] = useState();
-  const [xRightValue, setXRightValue] = useState();
+  // const [xLeftValue, setXLeftValue] = useState();
+  // const [xRightValue, setXRightValue] = useState();
   // Fonction qui calcule X et Y
   const getPosition = () => {
     const x = boxRef.current.offsetLeft;
     setX(x);
     const y = boxRef.current.offsetTop;
     setY(y);
-    const xLeftValueNew = x + minVal;
-    setXLeftValue(xLeftValueNew);
-    // const xRightValueNew = x + 50;
+    // const xLeftValueNew = (x / maxVal) * minVal + x;
+    // setXLeftValue(xLeftValueNew);
+    // const xRightValueNew = x + 300;
     // setXRightValue(xRightValueNew);
   };
   // J'obtiens la position de ma div au début dans le useEffect
@@ -56,9 +57,9 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   // Convertir en percentage
   const getPercent = useCallback(
     (value) => {
-      Math.round(((value - min) / (max - min)) * 100);
+      Math.round(((value - minprice) / (maxprice - minprice)) * 100);
     },
-    [min, max]
+    [minprice, maxprice]
   );
 
   // Set width of the range to decrease from the left side
@@ -88,7 +89,7 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
 
   // Get min and max values when their state changes
   useEffect(() => {
-    onChange({ min: minVal, max: maxVal });
+    onChange({ minprice: minVal, maxprice: maxVal });
   }, [minVal, maxVal, onChange]);
 
   // document.addEventListener("DOMContentLoaded", () => {
@@ -96,24 +97,24 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
   //   console.log("element=>", element);
   // });
 
-  let XDecalageMin = xLeftValue + minVal;
+  // let XDecalageMin = (x / maxVal) * minVal + x;
   // console.log("xLeftValueNew==>", xLeftValue);
   // console.log("minVal==>", minVal);
-  // console.log("XDecalage==>", XDecalageMin);
-  // let XDecalageMax = xRightValue + 100;
+  // console.log("XDecalageMin==>", XDecalageMin);
+  // let XDecalageMax = xRightValue;
   // console.log("XDecalageMax==>", XDecalageMax);
 
   return (
     <div className="slider-container" ref={boxRef}>
-      {/* <div>
+      <div style={{ display: "none" }}>
         <span>X: {x ?? "No result"}</span>
         <span>Y: {y ?? "No result"}</span>
-      </div> */}
+      </div>
       <input
         type="range"
         name="point1"
-        min={min}
-        max={max}
+        min={minprice}
+        max={maxprice}
         value={minVal}
         ref={minValRef}
         onChange={(event) => {
@@ -122,13 +123,13 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
           event.target.value = value.toString();
         }}
         className={classnames("thumb thumb--zindex-3", {
-          "thumb--zindex-5": minVal > max - 100,
+          "thumb--zindex-5": minVal > maxprice - 100,
         })}
       />
       <input
         type="range"
-        min={min}
-        max={max}
+        min={minprice}
+        max={maxprice}
         value={maxVal}
         ref={maxValRef}
         onChange={(event) => {
@@ -143,12 +144,10 @@ const MultiRangeSlider = ({ min, max, onChange }) => {
         <div ref={range} className="slider__range" />
       </div> */}
 
-      <div className="slider__left-value" style={{ left: `${XDecalageMin}px` }}>
+      <div className="slider__left-value" style={{ left: `${x}px` }}>
         {minVal}
       </div>
-      <div className="slider__right-value" style={{ left: "640px" }}>
-        {maxVal}
-      </div>
+      <div className="slider__right-value">{maxVal}</div>
       {/* <div className="slider__left-value">{minVal}</div>
       <div className="slider__right-value">{maxVal}</div> */}
     </div>

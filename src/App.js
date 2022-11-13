@@ -14,7 +14,6 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Blank from "./components/Blank";
 import Search from "./components/Search";
-import MultiRangeSlider from "./components/MultiRangeSlider";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("tokenCookie") || null); // le cookie sera le token sinon null
@@ -34,6 +33,8 @@ function App() {
     }
   };
 
+  // console.log("minprice==>", minprice);
+  // console.log("maxprice==>", maxprice);
   return (
     <Router>
       <Header
@@ -49,15 +50,6 @@ function App() {
             setMinPrice={setMinPrice}
             setMaxPrice={setMaxPrice}
             setSort={setSort} //value => price-desc or price-asc
-            multirangeslider={
-              <MultiRangeSlider
-                min={0}
-                max={1000}
-                onChange={({ min, max }) =>
-                  console.log(`min = ${min}, max = ${max}`)
-                }
-              />
-            }
           />
         }
       />

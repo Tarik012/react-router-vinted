@@ -20,7 +20,8 @@ const Header = ({ token, setToken, search }) => {
         </Link>
       </div>
       {/* Mon composant Search qui vient de App */}
-      {search}
+      <div className="search-container">{search}</div>
+
       {token ? (
         <div className="login-connect">
           <button onClick={handleClickDisconnect}>Deconnexion</button>

@@ -16,7 +16,7 @@ a {
 .header {
   margin: 0 auto;
   max-width: 1200px;
-  height: 80px;
+  height: 1à0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,7 +29,7 @@ a {
 }
 
 .logo {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -39,6 +39,10 @@ a {
   height: 100px;
   width: 200px;
   padding-bottom: 20px;
+}
+
+.search-container {
+  flex: 4;
 }
 
 .search {
@@ -51,7 +55,7 @@ a {
 }
 
 .login-connect {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +70,7 @@ a {
 }
 
 .button-buy {
-  flex: 2;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -142,7 +146,6 @@ input {
 }
 .offers-product-price {
   font-size: 17px;
-  color: black;
 }
 
 /*PARTIE OFFER*/
@@ -161,7 +164,6 @@ input {
 }
 
 .offer-cart {
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -221,19 +223,27 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 5px;
-  padding-bottom: 20px;
+  gap: 30px;
 }
 
 .price-and-sort {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 5px;
 }
 
-.price-and-sort input {
-  border: 1px solid black;
+.button-sort {
+  border: 1px solid green;
 }
 
-.slider-container {
+/* .price-and-sort input {
   border: 1px solid black;
+} */
+
+.multi-range-slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
