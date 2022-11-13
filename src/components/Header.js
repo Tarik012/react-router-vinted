@@ -23,7 +23,7 @@ const Header = ({ token, setToken, search, visible, setVisible }) => {
       <div className="search-container">{search}</div>
 
       {token ? (
-        <div className="login-connect">
+        <div className="login-disconnect">
           <button onClick={handleClickDisconnect}>Deconnexion</button>
         </div>
       ) : (

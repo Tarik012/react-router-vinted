@@ -70,6 +70,14 @@ a {
   width: fit-content;
 }
 
+.login-disconnect button {
+  background-color: red;
+  color: white;
+  border: 0.5px solid #2db0ba;
+  border-radius: 5px;
+  width: fit-content;
+}
+
 .button-buy {
   flex: 1;
   display: flex;
