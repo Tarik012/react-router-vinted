@@ -1,4 +1,5 @@
 import MultiRangeSlider from "./MultiRangeSlider";
+import Sort from "./Sort";
 
 const Search = ({
   title,
@@ -48,6 +49,7 @@ const Search = ({
               setSort(e.target.value);
             }}
           ></input>
+          <Sort />
         </div>
         <div className="multi-range-slider-container">
           <MultiRangeSlider

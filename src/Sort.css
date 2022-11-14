@@ -1,0 +1,27 @@
+.sort-container {
+  border: none;
+  width: 60px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #2db0ba;
+  border-radius: 20px;
+}
+
+.sort-container button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  border: none;
+}
+
+.A {
+  transform: translateX(0%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.D {
+  transform: translateX(-200%);
+  transition: transform 0.3s ease-in-out;
+}

@@ -12,6 +12,7 @@ const Header = ({ token, setToken, search, visible, setVisible }) => {
     Cookies.remove("tokenCookie");
     navigate("/");
   };
+
   return (
     <div className="header">
       <div className="logo">
@@ -24,7 +25,7 @@ const Header = ({ token, setToken, search, visible, setVisible }) => {
 
       {token ? (
         <div className="login-disconnect">
-          <button onClick={handleClickDisconnect}>Deconnexion</button>
+          <button onClick={handleClickDisconnect}>Se déconnecter</button>
         </div>
       ) : (
         <div className="login-connect">
@@ -45,8 +46,22 @@ const Header = ({ token, setToken, search, visible, setVisible }) => {
         //   </Link>
         // </div>
       )}
+
       <div className="button-buy">
-        <button>Vends tes articles</button>
+        {token ? ( //lien vers page publish si on est connecté
+          <Link to="/publish">
+            <button>Vends tes articles</button>
+          </Link>
+        ) : (
+          //lien vers page home avec la modal de connexion si on n'est pas connecté
+          <Link to="/">
+            <button>Vends tes articles</button>
+          </Link>
+        )}
+
+        {/* <Link to={token !== "" ? "/publish" : "*"}>
+          <button>Vends tes articles</button>
+        </Link> */}
       </div>
     </div>
   );

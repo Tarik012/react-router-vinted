@@ -313,3 +313,42 @@ input {
 .signup-login-modal-container {
   /* border: 5px solid red; */
 }
+
+.div-publish {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.div-h1 {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.publish-container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.section-publish {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.section-publish input {
+  width: 250px;
+}
+
+.section-publish div {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

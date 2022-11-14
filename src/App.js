@@ -1,5 +1,6 @@
 import "./App.css";
 import "./MultiRangeSlider.css";
+import "./Sort.css";
 
 import { useState } from "react";
 
@@ -13,6 +14,7 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 import Header from "./components/Header";
 import Blank from "./components/Blank";
 import Search from "./components/Search";
@@ -80,6 +82,7 @@ function App() {
             path="/login"
             element={<Login handleToken={handleToken} />}
           ></Route> */}
+          <Route path="/publish" element={<Publish token={token} />}></Route>
           <Route path="*" element={<Blank />}></Route>
         </Routes>
         {visible && (
