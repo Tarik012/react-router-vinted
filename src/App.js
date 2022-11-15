@@ -18,6 +18,7 @@ import Publish from "./pages/Publish";
 import Header from "./components/Header";
 import Blank from "./components/Blank";
 import Search from "./components/Search";
+import Payment from "./pages/Payment";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("tokenCookie") || null); // le cookie sera le token sinon null
@@ -83,6 +84,7 @@ function App() {
             element={<Login handleToken={handleToken} />}
           ></Route> */}
           <Route path="/publish" element={<Publish token={token} />}></Route>
+          <Route path="/payment" element={<Payment token={token} />}></Route>
           <Route path="*" element={<Blank />}></Route>
         </Routes>
         {visible && (

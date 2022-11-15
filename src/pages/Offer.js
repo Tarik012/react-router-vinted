@@ -1,15 +1,19 @@
+import Cookies from "js-cookie";
+
 import { useState, useEffect } from "react";
+
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
 import { useParams } from "react-router-dom";
 
-import { Link } from "react-router-dom";
-
 const Offer = () => {
   const { id } = useParams();
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+
+  const jeton = Cookies.get("tokenCookie");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,7 +43,6 @@ const Offer = () => {
           <div>
             <p>{data.product_price} €</p>
           </div>
-
           <div>
             {data.product_details.map((detail, index) => {
               const key = Object.keys(detail)[0];
@@ -50,7 +53,6 @@ const Offer = () => {
               );
             })}
           </div>
-
           <div>
             <p>{data.product_name}</p>
           </div>
@@ -65,9 +67,22 @@ const Offer = () => {
             />
             <p>{data.owner.account.username}</p>
           </div>
-          <div className="button-buy">
-            <button>Acheter</button>
-          </div>
+          if({jeton})
+          {
+            <Link to="/payment" state={{ title: "Toto", price: "12" }}>
+              <div className="button-buy">
+                <button>Acheter</button>
+              </div>
+            </Link>
+          }
+          else
+          {
+            <Link to="/">
+              <div className="button-buy">
+                <button>Acheter</button>
+              </div>
+            </Link>
+          }
         </div>
       </div>
     </div>

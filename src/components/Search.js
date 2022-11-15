@@ -1,5 +1,5 @@
 import MultiRangeSlider from "./MultiRangeSlider";
-import Sort from "./Sort";
+// import Sort from "./Sort";
 
 const Search = ({
   title,
@@ -44,12 +44,13 @@ const Search = ({
           <input
             type="text"
             placeholder="tri"
+            title="put 'price-asc' or 'price-desc'"
             value={sort}
             onChange={(e) => {
               setSort(e.target.value);
             }}
           ></input>
-          <Sort />
+          {/* <Sort /> */}
         </div>
         <div>
           <MultiRangeSlider
