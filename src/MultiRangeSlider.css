@@ -101,15 +101,19 @@
 
 .slider__left-value {
   /* left: 6px; */
-  top: 40px;
+  /* top: 40px; */
 }
 
 .slider__right-value {
   /* right: -4px; */
-  left: 840px;
-  top: 40px;
+  /* left: 840px;
+  top: 40px; */
 }
 
 .slider-container {
+  border: 1px solid blue;
   width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

@@ -110,44 +110,48 @@ const MultiRangeSlider = ({ minprice, maxprice, onChange }) => {
         <span>X: {x ?? "No result"}</span>
         <span>Y: {y ?? "No result"}</span>
       </div>
-      <input
-        type="range"
-        name="point1"
-        min={minprice}
-        max={maxprice}
-        value={minVal}
-        ref={minValRef}
-        onChange={(event) => {
-          const value = Math.min(+event.target.value, maxVal - 1);
-          setMinVal(value);
-          event.target.value = value.toString();
-        }}
-        className={classnames("thumb thumb--zindex-3", {
-          "thumb--zindex-5": minVal > maxprice - 100,
-        })}
-      />
-      <input
-        type="range"
-        min={minprice}
-        max={maxprice}
-        value={maxVal}
-        ref={maxValRef}
-        onChange={(event) => {
-          const value = Math.max(+event.target.value, minVal + 1); //Valeur de max = min + 1 pour ne pas se chevaucher et garder un rande de 1 minimum
-          setMaxVal(value);
-          event.target.value = value.toString();
-        }}
-        className="thumb thumb--zindex-4"
-      />
+      <div className="slider__left-value">{minVal}</div>
+      <div>
+        <input
+          type="range"
+          name="point1"
+          min={minprice}
+          max={maxprice}
+          value={minVal}
+          ref={minValRef}
+          onChange={(event) => {
+            const value = Math.min(+event.target.value, maxVal - 1);
+            setMinVal(value);
+            event.target.value = value.toString();
+          }}
+          className={classnames("thumb thumb--zindex-3", {
+            "thumb--zindex-5": minVal > maxprice - 100,
+          })}
+        />
+        <input
+          type="range"
+          min={minprice}
+          max={maxprice}
+          value={maxVal}
+          ref={maxValRef}
+          onChange={(event) => {
+            const value = Math.max(+event.target.value, minVal + 1); //Valeur de max = min + 1 pour ne pas se chevaucher et garder un rande de 1 minimum
+            setMaxVal(value);
+            event.target.value = value.toString();
+          }}
+          className="thumb thumb--zindex-4"
+        />
+      </div>
+      <div className="slider__right-value">{maxVal}</div>
       {/* <div className="slider">
         <div className="slider__track" />
         <div ref={range} className="slider__range" />
       </div> */}
 
-      <div className="slider__left-value" style={{ left: `${x}px` }}>
+      {/* <div className="slider__left-value" style={{ left: `${x}px` }}>
         {minVal}
       </div>
-      <div className="slider__right-value">{maxVal}</div>
+      <div className="slider__right-value">{maxVal}</div> */}
       {/* <div className="slider__left-value">{minVal}</div>
       <div className="slider__right-value">{maxVal}</div> */}
     </div>

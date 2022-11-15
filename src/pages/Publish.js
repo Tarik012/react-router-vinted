@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 
 const Publish = ({ token }) => {
   const [picture, setPicture] = useState({});
@@ -43,8 +44,7 @@ const Publish = ({ token }) => {
       console.log(error.message);
     }
   };
-
-  return (
+  return token ? (
     <>
       <div className="div-publish">
         <div className="div-h1">
@@ -54,19 +54,30 @@ const Publish = ({ token }) => {
 
       <div className="publish-container">
         <form onSubmit={handleSubmit}>
+          {/* {picture ? (
+            <img src={URL.createObjectURL(picture)} alt="" />
+          ) : ( */}
           <div className="section-publish">
             <div>
-              <p>Ajouter une photo</p>
+              <label
+                htmlFor="idfile"
+                style={{ color: "blue", cursor: "pointer" }}
+              >
+                + Ajouter une photo
+              </label>
             </div>
             <div>
               <input
+                id="idfile"
                 type="file"
                 onChange={(event) => {
                   setPicture(event.target.files[0]);
                 }}
+                style={{ display: "none" }}
               ></input>
             </div>
           </div>
+          {/* )} */}
 
           <div className="section-publish">
             <div>
@@ -218,6 +229,8 @@ const Publish = ({ token }) => {
         </form>
       </div>
     </>
+  ) : (
+    Navigate("/")
   );
 };
 
