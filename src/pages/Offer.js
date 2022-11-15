@@ -34,8 +34,10 @@ const Offer = () => {
     <span>En cours de chargement...</span>
   ) : (
     <div className="tab-images">
-      <div className="offer">
+      <div>
         <Link to="/">Retour liste articles</Link>
+      </div>
+      <div className="offer">
         <div className="offer-image">
           <img src={data.product_image.secure_url} alt="offer"></img>
         </div>
@@ -47,9 +49,14 @@ const Offer = () => {
             {data.product_details.map((detail, index) => {
               const key = Object.keys(detail)[0];
               return (
-                <p key={index}>
-                  {key} : {detail[key]}
-                </p>
+                <div key={index} className="offercart-details">
+                  <div>
+                    <p>{key}</p>
+                  </div>
+                  <div>
+                    <p>{detail[key]}</p>
+                  </div>
+                </div>
               );
             })}
           </div>
@@ -79,7 +86,7 @@ const Offer = () => {
                 : ""
             }
           >
-            <div className="button-buy">
+            <div className="button-buy-offer">
               <button>Acheter</button>
             </div>
           </Link>

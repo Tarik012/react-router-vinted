@@ -3,7 +3,7 @@ import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 
 import axios from "axios";
 
-const CheckoutForm = ({ token, title, amount }) => {
+const CheckoutForm = ({ token, title, amount, setPayment }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -39,6 +39,7 @@ const CheckoutForm = ({ token, title, amount }) => {
       // Si la réponse du serveur est favorable, la transaction a eu lieu
       if (response.data.status === "succeeded") {
         setCompleted(true);
+        setPayment(true);
       }
     } catch (error) {
       console.log(error.response.data);

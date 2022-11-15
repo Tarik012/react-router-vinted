@@ -39,7 +39,7 @@ const Publish = ({ token }) => {
         },
       });
       setData(response.data);
-      console.log("data=>", response.data);
+      //console.log("data=>", response.data);
     } catch (error) {
       console.log(error.message);
     }
@@ -48,7 +48,9 @@ const Publish = ({ token }) => {
     <>
       <div className="div-publish">
         <div className="div-h1">
-          <h1>Vends ton article</h1>
+          <h1 style={{ fontSize: "20px", fontWeight: "bold" }}>
+            Vends ton article
+          </h1>
         </div>
       </div>
 
@@ -227,6 +229,11 @@ const Publish = ({ token }) => {
             </div>
           </div>
         </form>
+        <div style={{ marginLeft: "30px" }}>
+          <span style={{ color: "red", fontStyle: "italic" }}>
+            le produit {data.product_name} a été publié
+          </span>
+        </div>
       </div>
     </>
   ) : (
