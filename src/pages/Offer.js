@@ -67,22 +67,22 @@ const Offer = () => {
             />
             <p>{data.owner.account.username}</p>
           </div>
-          if({jeton})
-          {
-            <Link to="/payment" state={{ title: "Toto", price: "12" }}>
-              <div className="button-buy">
-                <button>Acheter</button>
-              </div>
-            </Link>
-          }
-          else
-          {
-            <Link to="/">
-              <div className="button-buy">
-                <button>Acheter</button>
-              </div>
-            </Link>
-          }
+
+          <Link
+            to={jeton ? "/payment" : "/"}
+            state={
+              jeton
+                ? {
+                    title: `${data.product_name}`,
+                    price: `${data.product_price}`,
+                  }
+                : ""
+            }
+          >
+            <div className="button-buy">
+              <button>Acheter</button>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
