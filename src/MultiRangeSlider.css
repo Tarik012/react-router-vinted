@@ -25,7 +25,7 @@
   margin-left: 10px;
 }
 
-/* Removing the default appearance */
+/* retire l'apparance par déafut*/
 .thumb,
 .thumb::-webkit-slider-thumb {
   -webkit-appearance: none;
@@ -47,11 +47,10 @@
 
 .thumb--zindex-4 {
   z-index: 4;
-  /* border: 1px solid red; */
 }
 
 /*Points sur le slide*/
-/* For Chrome browsers */
+/* pour Chrome */
 .thumb::-webkit-slider-thumb {
   background-color: #2db0ba;
   border: none;
@@ -65,7 +64,7 @@
   position: relative;
 }
 
-/* For Firefox browsers */
+/* Pour Firefox */
 .thumb::-moz-range-thumb {
   background-color: #2db0ba;
   border: none;
@@ -90,7 +89,7 @@
   color: white;
   font-size: 15px;
   margin-top: 20px;
-  position: absolute;
+  /* position: absolute; */
   border-radius: 5px;
   height: 20px;
   width: 30px;
@@ -111,8 +110,15 @@
 }
 
 .slider-container {
-  border: 1px solid blue;
   width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-values {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -244,7 +244,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 30px;
+  gap: 10px;
 }
 
 .price-and-sort {
@@ -252,6 +252,7 @@ input {
   align-items: center;
   justify-content: space-between;
   gap: 5px;
+  /* border: 1px solid green; */
 }
 
 .button-sort {
@@ -263,13 +264,14 @@ input {
 } */
 
 .multi-range-slider-container {
+  height: fit-content;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   gap: 10px;
 }
 
-/*MODAL POUR CONNECXION ET INSCRIPTION*/
+/*MODAL POUR CONNEXION ET INSCRIPTION*/
 .App {
   position: relative;
 }

@@ -51,7 +51,7 @@ const Search = ({
           ></input>
           <Sort />
         </div>
-        <div className="multi-range-slider-container">
+        <div>
           <MultiRangeSlider
             minprice={0}
             maxprice={1000}
