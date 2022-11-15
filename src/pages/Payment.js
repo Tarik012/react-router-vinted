@@ -13,8 +13,8 @@ const Payment = ({ token }) => {
   const location = useLocation();
   const { price, title } = location.state;
 
-  const fraisProtection = 0.4;
-  const fraisPort = 0.8;
+  const fraisProtection = "0.4";
+  const fraisPort = "0.8";
 
   const total = (
     Number(price) +
@@ -25,34 +25,36 @@ const Payment = ({ token }) => {
   return token ? (
     <div className="payment-container">
       <div className="div-payment">
-        <div className="section-payment">
+        <div className="section-payment sp1">
           <div>Résumé de la commande</div>
           <div></div>
         </div>
-        <div className="section-payment">
+        <div className="section-payment sp2">
           <div>Commande</div>
-          <div>{price} €</div>
+          <div className="align">{price} €</div>
         </div>
-        <div className="section-payment">
+        <div className="section-payment sp3">
           <p>Frais protection acheteur</p>
           <p>O.40 €</p>
         </div>
-        <div className="section-payment">
+        <div className="section-payment sp4">
           <p>Frais de port</p>
           <p>O.80 €</p>
         </div>
-        <div className="section-payment">
-          <p style={{ fontWeight: "bold" }}>Total</p>
-          <p style={{ fontWeight: "bold" }}>{total}</p>
+        <div className="section-payment sp5"></div>
+        <div className="section-payment sp6">
+          <p style={{ fontWeight: "bold", fontSize: "16px" }}>Total</p>
+          <p style={{ fontWeight: "bold", fontSize: "16px" }}>{total}</p>
         </div>
-        <div className="section-payment">
-          <p>
+        <div className="section-payment sp7">
+          <p style={{ textAlign: "justify", fontSize: "13px" }}>
             Il ne vous plus qu'une étape pour vous offrir{" "}
             <span style={{ fontWeight: "bold" }}>{title}</span>. Vous allez
             payer <span style={{ fontWeight: "bold" }}>{total} €</span> (frais
             de protection et frais de port inclus).
           </p>
         </div>
+        <div className="section-payment sp8"></div>
         <div>
           <Elements stripe={stripePromise}>
             <CheckoutForm token={token} title={title} amount={price} />

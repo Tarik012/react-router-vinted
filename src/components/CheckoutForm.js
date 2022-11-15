@@ -49,7 +49,9 @@ const CheckoutForm = ({ token, title, amount }) => {
     <>
       {!completed ? (
         <form onSubmit={handleSubmit}>
-          <CardElement />
+          <div className="card-element">
+            <CardElement />
+          </div>
           <div className="btn-payment">
             <button>Pay</button>
           </div>
