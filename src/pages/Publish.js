@@ -14,6 +14,7 @@ const Publish = ({ token }) => {
   const [price, setPrice] = useState("");
   const [change, setChange] = useState(false);
   const [data, setData] = useState();
+  const [success, setSuccess] = useState(false);
 
   const url = "https://lereacteur-vinted-api.herokuapp.com/offer/publish";
 
@@ -39,13 +40,14 @@ const Publish = ({ token }) => {
         },
       });
       setData(response.data);
+      setSuccess(true);
       //console.log("data=>", response.data);
     } catch (error) {
       console.log(error.message);
     }
   };
   return token ? (
-    <>
+    <div>
       <div className="div-publish">
         <div className="div-h1">
           <h1 style={{ fontSize: "20px", fontWeight: "bold" }}>
@@ -229,13 +231,14 @@ const Publish = ({ token }) => {
             </div>
           </div>
         </form>
+
         <div style={{ marginLeft: "30px" }}>
           <span style={{ color: "red", fontStyle: "italic" }}>
-            le produit {data.product_name} a été publié
+            {success ? `le produit ${data.product_name} a été publié` : ""}
           </span>
         </div>
       </div>
-    </>
+    </div>
   ) : (
     Navigate("/")
   );
